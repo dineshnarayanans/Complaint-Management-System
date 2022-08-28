@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subordinate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    </head>
+  <body>
+      <div class="container">
+        <div class="col-lg-12 fr-wrapper" id="">
+      <a href="logout" class="btn btn-primary btn-lg btn-block myBtn" style = "width:9%;position:relative; left:1000px; top:2px;">Logout</a>
+      <h2 class="text-center font-weight-bold text-primary">Here is the list of notifications</h2><br>
+      <table class="table table-bordered table-hover" id="complaint-tbl">
+        <thead style="background-color: rgba(54, 129, 228, 0.842);">
+          <tr style="color: white;">
+            <th width="5%">Sl No</th>
+            <th width="20%">Type</th>
+            <th width="30%">Message</th>
+            <th width="10%">Date</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+{% for notification in notifications %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{notification.type}}</td>
+<td>{{notification.message}}</td>
+<td>{{notification.created_date}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>

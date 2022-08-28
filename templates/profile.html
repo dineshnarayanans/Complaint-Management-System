@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{user.first_name}}'s Profile</title>
+    <!-- Bootstrap 4 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Fontawesome CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+    </head>
+    <body>
+  {% if user.profile %}
+      
+      <!-- <h3>{{ user.first_name }}</h3><br><hr>
+      {{ user.email }}<br><hr>
+      {{ user.profile.dob }}<br><hr>
+      {{ user.profile.adhaar_no }}<br><hr>
+      {{ user.profile.phone }}<br><hr>
+      <img src="{{user.profile.photo.url}}" width="50" height="50"><hr>
+      <a href='logout'>logout</a> -->
+      <div class="card">
+        <img src="{{user.profile.photo.url}}" alt="John" style="width:100%">
+        <h1>{{ user.first_name }} {{user.last_name}}</h1>
+        <p>DOB: {{user.profile.dob}}</p>
+        <p>Phone: {{user.profile.phone}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Adhaar no: {{user.profile.adhaar_no}}</p>
+        <p><button><a href="logout" style="color: whitesmoke;">Logout</a></button></p>
+      </div>
+  {% else %}
+  <form action="#" method="post" class="px-3" enctype="multipart/form-data" id="register-form">
+      {% csrf_token %}
+      <div class="input-group input-group-lg form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text rounded-0" style="height: 48px;"><img src="https://cdn2.iconfinder.com/data/icons/soleicons-line-vol-2/64/aadhaar_aadhar_card_driving_id_license-512.png" height="40" width="40"></span>
+          </div>
+          <input type="number"  name="adhaar" class="form-control rounded-0" placeholder="Aadhar Number" required />
+        </div> 
+        <div class="input-group input-group-lg form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text rounded-0"><i class="far fa-user fa-lg fa-fw"></i></span>
+          </div>
+          <input type="date" id="birthday" name="dob" class="form-control rounded-0" placeholder="Date of Birth" required />
+        </div> 
+        <!-- <div class="input-group input-group-lg form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text rounded-0" style="height:48px;"><label for="gender">Select gender:</label>
+            </span>
+          </div>
+          <select name="gender" id="gender" class="form-control rounded-0" placeholder="gender" >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="">prefer not to say</option>
+          </select> -->
+        </div> 
+        <div class="input-group input-group-lg form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text rounded-0" style="height: 48px;"><img src="https://pngimg.com/uploads/phone/phone_PNG48919.png" height="35" width="40"> </span>
+          </div>
+          <input type="number" name="phone" maxlength="10" class="form-control rounded-0" placeholder="phone number Number" required />
+        </div>
+        <div class="input-group input-group-lg form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text rounded-0"><i>Upload image</i></span>
+          </div>
+          <input type="file"  name="photo" class="form-control rounded-0" placeholder="Choose image" 
+          />
+        </div> 
+        <div class="form-group">
+          <input type="submit" id="register-btn" value="Sign Up" class="btn btn-primary btn-lg btn-block myBtn" />
+        </div>
+        </form>
+{% endif %}
+{% for message in messages%}
+<h3>{{ message }}</h3>
+{% endfor %}
+</body>
+</html>

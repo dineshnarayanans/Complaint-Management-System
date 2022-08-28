@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <!-- Bootstrap 4 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Fontawesome CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    </head>
+    <body class="bg-info">
+      <div class="row justify-content-center wrapper" id="login-box">
+        <div class="col-lg-10 my-auto myShadow">
+          <div class="row">
+            <div class="col-lg-7 bg-white p-4">
+              <h1 class="text-center font-weight-bold text-primary">Welcome to Registration Form</h1>
+              <hr class="my-3" />
+    <form action="#" method="post" class="px-3" enctype="multipart/form-data" id="register-form">
+    {% csrf_token %}
+      <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i class="far fa-user fa-lg fa-fw"></i></span>
+        </div>
+        <input type="text" id="name" name="first_name" class="form-control rounded-0" placeholder="First Name" required />
+      </div>
+      <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i class="far fa-user fa-lg fa-fw"></i></span>
+        </div>
+        <input type="text" id="name" name="last_name" class="form-control rounded-0" placeholder="Last Name" required />
+      </div>
+      <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i class="far fa-envelope fa-lg fa-fw"></i></span>
+        </div>
+        <input type="email" id="remail" name="email" class="form-control rounded-0" placeholder="E-Mail" required />
+      </div>
+      <!-- <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0" style="height: 48px;"><img src="https://cdn2.iconfinder.com/data/icons/soleicons-line-vol-2/64/aadhaar_aadhar_card_driving_id_license-512.png" height="40" width="40"></span>
+        </div>
+        <input type="number" id="aadno" name="aadno" class="form-control rounded-0" placeholder="Aadhar Number" required />
+      </div> -->
+      <!-- <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i class="far fa-user fa-lg fa-fw"></i></span>
+        </div>
+        <input type="date" id="birthday" name="dob" class="form-control rounded-0" placeholder="Date of Birth" required />
+      </div> -->
+      <!-- <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0" style="height:48px;"><label for="gender">Select gender:</label>
+          </span>
+        </div>
+        <select name="gender" id="gender" class="form-control rounded-0" placeholder="gender" >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="">prefer not to say</option>
+         </select>
+      </div> -->
+      <!-- <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0" style="height: 48px;"><img src="https://pngimg.com/uploads/phone/phone_PNG48919.png" height="35" width="40"> </span>
+        </div>
+        <input type="number" name="phoneno" maxlength="10" class="form-control rounded-0" placeholder="phone number Number" required />
+      </div>
+      <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i>Upload image</i></span>
+        </div>
+        <input type="file"  name="photo" class="form-control rounded-0" placeholder="Choose image" 
+        />
+      </div> -->
+      <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i class="fas fa-key fa-lg fa-fw"></i></span>
+        </div>
+        <input type="password" id="rpassword" name="password1" class="form-control rounded-0" minlength="5" placeholder="Password" required />
+      </div>
+      <div class="input-group input-group-lg form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text rounded-0"><i class="fas fa-key fa-lg fa-fw"></i></span>
+        </div>
+        <input type="password" id="cpassword" name="password2" class="form-control rounded-0" minlength="5" placeholder="Confirm Password" required />
+      </div>
+      <div class="form-group">
+        <div id="passError" class="text-danger font-weight-bolder">
+          {% for message in messages %}
+          <h3> {{message}}  </h3>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" id="register-btn" value="Sign Up" class="btn btn-primary btn-lg btn-block myBtn" />
+      </div>
+    </form>
+    </div>
+          </div>
+          </div>
+          </div>
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   </body>
+</html>

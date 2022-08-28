@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CMS</title>
+        <link rel="icon" href="{% static 'images/logo.png'%}">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    </head>
+    <body onload="slider()">
+        <div class="banner">
+            <div class="slider">
+                <img src = "{% static 'images/image.jpg' %}" id="slideImg">
+            </div>
+            <div class="overlay">
+                <div class="navbar">
+                    <div class="logo">
+                        <img src="{% static 'images/logo.png' %}">
+                    </div>
+                    {% if user.is_authenticated %} 
+                    <div class="nav-links" id="navLinks">
+                        <ul>
+                            <li><a href="profile">Hello, {{ user.first_name }}</a></li>
+                            <li><a href="about">ABOUT</a></li>
+                            <li><a href="logout">LOGOUT</a></li>
+                            <li><a href="/feedback">FEEDBACK</a></li>
+                            <li><a href="contact">CONTACT</a></li>
+                            <li><a href="notification">NOTIFICATION</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <div class="nav-links" id="navLinks">
+                        <ul>
+                            <li><a href="about">ABOUT</a></li>
+                            <li><a href="login">LOGIN</a></li>
+                            <li><a href="signup">REGISTER</a></li>
+                            <li><a href="contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="content">
+                    <h2>Complaint</h2>
+                    <h2>Management</h2>
+                    <h2>System</h2>
+                    <h3>Register compaliants at your fingertip</h3>
+                    {% for message in messages %}
+                        <h3>{{ message }}</h3>
+                    {% endfor %}
+                    <div>
+                        {% if not user.is_authenticated %}
+                        <button type="button"><a href="login" style="color: white;">Login</a></button>
+                        {% endif %}
+                        <button type="button" class="btn-2"><a href="complaint" style="color: white;">Give your compaliants</a></button>    
+                    </div>
+                    <div><br></div>
+                    <div> {% if not user.is_authenticated %}
+                        <button type="button"><a href="subordinate" style="color: white;">Click here if you are a subordinate</a></button>
+                        {% endif %} </div>
+                </div>
+             </div>
+        </div>
+        
+        <script>
+            var slideImg = document.getElementById("slideImg");
+
+            var images =new Array(
+                "{% static 'images/image.jpg' %}",
+                "{% static 'images/1.jpg' %}",
+                "{% static 'images/2.jpg' %}",
+                "{% static 'images/3.jpg' %}"
+            );
+
+            var len = images.length;
+            var i =0;
+            
+            function slider(){
+                if(i > len-1){
+                    i=0;
+
+                }
+                slideImg.src = images[i];
+                i++;
+                setTimeout('slider()',3000);
+
+            }
+        </script>
+    </body>
+</html>

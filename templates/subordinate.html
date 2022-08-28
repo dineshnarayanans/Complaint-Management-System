@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subordinate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    </head>
+  <body>
+      <div class="container">
+        <div class="col-lg-12 fr-wrapper" id="">
+          {% if user.is_authenticated %}
+      <h1 class="text-center font-weight-bold text-primary">Welcome Subordinate</h1>
+      <a href="logout" class="btn btn-primary btn-lg btn-block myBtn" style = "width:9%;position:relative; left:1000px; top:2px;">Logout</a>
+      <h2 class="text-center font-weight-bold text-primary">Here is the list of tasks</h2><br>
+      
+          <table class="table table-bordered table-hover" id="complaint-tbl">
+            <thead style="background-color: rgba(54, 129, 228, 0.842);">
+              <tr style="color: white;">
+                <th width="5%">Sl No</th>
+                <th width="5%">User id</th>
+                <th width="10%">Complaint id</th>
+                <th width="20%">Title</th>
+                <th width="10%">Date</th>
+                <th width="20%">complaint</th>
+                <th width="10%">Status</th>
+                <th width="5%">Attachemnt</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for complaint in complaints %}
+              <tr>
+                <td>{{ forloop.counter}} </td>
+                <td>{{ complaint.complaint.user.id}} </td>
+                <td>{{ complaint.complaint.id}}</td>
+                <td>{{ complaint.complaint.title }}</td>
+                <td>{{complaint.complaint.created_at}}</td>
+                <td>{{complaint.complaint.complain}}</td>
+                {% if complaint.complaint.status == 'C' %}
+                <td>Completed </td>
+                {% else %}
+                <td>Pending</td>
+                {% endif %}
+                <td><a target="_blank" href="{{complaint.complaint.pic.url}}">view</a></td>
+              {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {%else %}
+      <!-- Login Form Start -->
+      <div class="row justify-content-center wrapper" id="login-box">
+        <div class="col-lg-10 my-auto myShadow">
+          <div class="row">
+            <div class="col-lg-7 bg-white p-4">
+              <h1 class="text-center font-weight-bold text-primary">Welcome Subordinate</h1>
+              <hr class="my-3" />
+              <form action="#" method="post" class="px-3" id="login-form">
+                  {% csrf_token %}
+                  <div id="loginAlert"></div>
+                    <div class="input-group input-group-lg form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text rounded-0"><i class="far fa-envelope fa-lg fa-fw"></i></span>
+                      </div>
+                      <input type="text" id="email" name="username" class="form-control rounded-0" placeholder="Email-Id" required />
+                    </div>
+                    <div class="input-group input-group-lg form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text rounded-0"><i class="fas fa-key fa-lg fa-fw"></i></span>
+                      </div>
+                      <input type="password" id="password" name="password" class="form-control rounded-0" minlength="5" placeholder="Password" required autocomplete="off" />
+                    </div>
+                      <div class="forgot float-right">
+                        <!-- <a href="#" id="forgot-link">Forgot Password?</a> -->
+                      </div>
+                    </div>
+                    <div class="input-group input-group-lg form-group"></div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="login-btn" value="Sign In" class="btn btn-primary btn-lg btn-block myBtn" style="width: 10%;"/>
+                    </div>
+              </form>
+              {% for message in messages %}
+              {{ message}}
+              {% endfor %}
+              {% endif %}
+
+        </div>
+    </div>
+    </div>
+  </div>
+</body>
+ </html>

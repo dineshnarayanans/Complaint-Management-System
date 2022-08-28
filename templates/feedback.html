@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMS Feedback</title>
+    <!-- Bootstrap 4 CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Fontawesome CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+</head>
+    <body>
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-lg-8 mt-3">
+    <div class="card border-primary">
+    <div class="card-header lead text-center bg-primary text-white">
+    Share your experience with Admin!
+    </div>
+    <div class="card-body">
+        <form action="#" method="post" class="px-4" id="feedback-form">{% csrf_token %}
+        <div class="form-group">
+        <input type="text" class="form-control-lg form-control rounded-0" name="subject" placeholder="Write Your Subject" required>
+        </div>
+        <div class="form-group">
+        <textarea class="form-control-lg form-control rounded-0" name="feedback" placeholder="Write Your Feedback Here.." rows="8" required></textarea>
+        </div>
+        <div class="form-group">
+        <input class="btn btn-primary btn-block btn-lg rounded-0" name="feedbackBtn" id="feedbackBtn"value="Send Feedback" type="submit" >
+        </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div>
+        {% for fb in replied_fb %}
+            {% if fb.reply %}
+            <h3>{{ fb.subject}}</h3>
+            <h4>{{ fb.created_at }}</h4>
+            <h4>{{ fb.reply}}</h4>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </body>
+    </html>
